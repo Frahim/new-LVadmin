@@ -1,0 +1,11 @@
+.nav-tabs li .active {
+    background-color: #ddd;
+    color: #333;
+    
+}
+
+.nav-tabs li a {
+    padding: 20px 30px;
+    display: block;
+    border-right: 1px solid #d1d3e2;
+}

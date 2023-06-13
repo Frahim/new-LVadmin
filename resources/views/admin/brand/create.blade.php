@@ -10,16 +10,17 @@
                 </div>
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs">
-                    <li class="active p-2"><a href="#home-pills" data-toggle="tab">Basick Info</a>
+                    <li ><a class="active" href="#home-pills" data-toggle="tab">Basick Info</a>
                     </li>
-                    <li class="p-2"><a href="#profile-pills" data-toggle="tab">Media</a>
+                    <li class=""><a href="#profile-pills" data-toggle="tab">Media</a>
                     </li>
-                    <li class="p-2"><a href="#messages-pills" data-toggle="tab">Address</a>
+                    <li class=""><a href="#messages-pills" data-toggle="tab">Address</a>
                     </li>
-                    <li class="p-2"><a href="#settings-pills" data-toggle="tab">SEO</a>
+                    <li class=""><a href="#settings-pills" data-toggle="tab">SEO</a>
                     </li>
                 </ul>
                 <div class="card-body">
+                    
                     <form action="{{ url('admin/brand') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <!-- Tab panes -->
@@ -27,8 +28,8 @@
                             <div class="tab-pane fade in active show" id="home-pills">
                                 <h4>Basick Information</h4>
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Brand Name</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-12 col-form-label">Brand Name</label>
+                                    <div class="col-sm-12">
                                         <input type="text" name="name" class="form-control">
                                         @error('name')
                                             <small class="text-danger">{{ $message }}</small>
@@ -36,8 +37,8 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Brand Slug</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-12 col-form-label">Brand Slug</label>
+                                    <div class="col-sm-12">
                                         <input type="text" name="slug" class="form-control">
                                         @error('slug')
                                             <small class="text-danger">{{ $message }}</small>
@@ -45,14 +46,26 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Brand Description</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-12 col-form-label">About Brand</label>
+                                    <div class="col-sm-12">
+                                        <textarea rows="5" name="about_brand" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-12 col-form-label">Brand Description</label>
+                                    <div class="col-sm-12">
                                         <textarea rows="5" name="description" class="form-control"></textarea>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Other Description</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-12 col-form-label">Short Description</label>
+                                    <div class="col-sm-12">
+                                        <textarea rows="5" name="short_description" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-12 col-form-label">Other Description</label>
+                                    <div class="col-sm-12">
                                         <textarea rows="5" name="other_description" class="form-control"></textarea>
                                     </div>
                                 </div>
@@ -61,22 +74,28 @@
                             <div class="tab-pane fade" id="profile-pills">
                                 <h4>Media</h4>
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Brand Logo</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-12 col-form-label">Brand Logo</label>
+                                    <div class="col-sm-12">
                                         <div class="input-group">
-                                            <input type="file" name="logo" class="form-control">
-                                            <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                                            <input type="file" name="logo" class="form-control">                                           
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="row mb-3">
+                                    <label class="col-sm-12 col-form-label">Brand Image</label>
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <input type="file" name="bandr_image" class="form-control">                                            
+                                        </div>
+                                    </div>
+                                </div>
+                       
 
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Brand Video</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-12 col-form-label">Brand Video</label>
+                                    <div class="col-sm-12">
                                         <div class="input-group">
-                                            <input type="file" name="Vedio" class="form-control">
-                                            <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                                            <input type="file" name="Vedio" class="form-control">                                       
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +104,7 @@
                                 <h4>Address</h4>
                                 <div class="row mb-3">   
                                     <div class="col-md-6 col-sm-12">                                 
-                                        <label class="col-sm-10 col-form-label">Phone Number</label>
+                                        <label class="col-sm-12 col-form-label">Phone Number</label>
                                         <div class="col-sm-12">
                                             <input type="text" name="phonenumber" class="form-control">
                                         </div>
@@ -99,7 +118,7 @@
                                 </div>
                                 <div class="row mb-3">   
                                     <div class="col-md-6 col-sm-12">                                 
-                                        <label class="col-sm-10 col-form-label">Email</label>
+                                        <label class="col-sm-12 col-form-label">Email</label>
                                         <div class="col-sm-12">
                                             <input type="text" name="email" class="form-control">
                                         </div>
@@ -111,28 +130,31 @@
 
                                 <div class="row mb-3">
                                     <div class="col-md-6 col-sm-12">                                 
-                                        <label class="col-sm-10 col-form-label">Address</label>
+                                        <label class="col-sm-12 col-form-label">Address</label>
                                         <div class="col-sm-12">
                                             <input type="text" name="address" class="form-control">
                                         </div>
                                      </div>
                                      <div class="col-sm-12 col-md-6">
-                                        <label class="col-sm-2 col-form-label">Postalcode</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="postalcode" class="form-control">
+                                        <label class="col-sm-12 col-form-label">House Number</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" name="housenumber" class="form-control">
                                         </div>
                                      </div>
                                     
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-6 col-sm-12">                                 
-                                        <label class="col-sm-10 col-form-label">City</label>
+                                        <label class="col-sm-12 col-form-label">City</label>
                                         <div class="col-sm-12">
                                             <input type="text" name="city" class="form-control">
                                         </div>
                                      </div>
                                      <div class="col-sm-12 col-md-6">
-                                       
+                                        <label class="col-sm-12 col-form-label">Postalcode</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" name="postalcode" class="form-control">
+                                        </div>
                                      </div>
                                     
                                 </div>   
@@ -141,30 +163,30 @@
 
                             <div class="tab-pane fade" id="settings-pills">
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Mobile</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="mobile" class="form-control">
+                                    <label class="col-sm-12 col-form-label">Meta Title</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" name="meta_title" class="form-control">
                                     </div>
                                 </div>
 
 
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Meta Keyword</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-12 col-form-label">Meta Keyword</label>
+                                    <div class="col-sm-12">
                                         <input type="text" name="meta_keyword" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Meta Description</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-12 col-form-label">Meta Description</label>
+                                    <div class="col-sm-12">
                                         <input type="text" name="meta_description" class="form-control">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-12 ">
-                                <button type="submit" class="btn btn-primary text-white float-end">Save</button>
+                            <div class="col-12  text-right">
+                                <button type="submit" class="btn btn-primary  btn-lg text-white">Save</button>
                             </div>
                         </div>
                     </form>

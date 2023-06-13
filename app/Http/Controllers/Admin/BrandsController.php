@@ -27,10 +27,27 @@ class BrandsController extends Controller
         $brand->name = $validatedData['name'];
         $brand->slug = Str::slug($validatedData['slug']);
         $brand->description = $validatedData['description'];
+        $brand->about_brand = $validatedData['about_brand'];    
         $brand->other_description = $validatedData['other_description'];
+        $brand->short_description = $validatedData['short_description'];
+        $brand->address = $validatedData['address'];
+        $brand->housenumber = $validatedData['housenumber'];    
+        $brand->postalcode = $validatedData['postalcode'];
+        $brand->city = $validatedData['city'];
+        $brand->phonenumber = $validatedData['phonenumber'];
+        $brand->mobile = $validatedData['mobile'];
+        $brand->email = $validatedData['email'];       
 
         if($request-> hasFile('logo')){
             $file = $request->file('logo');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time().'.'.$ext;
+            
+            $file->move('uploads/brand/', $filename);
+            $brand->logo = $filename;
+        }
+        if($request-> hasFile('bandr_image')){
+            $file = $request->file('bandr_image');
             $ext = $file->getClientOriginalExtension();
             $filename = time().'.'.$ext;
             
@@ -49,8 +66,7 @@ class BrandsController extends Controller
    
         $brand->meta_title = $validatedData['meta_title'];
         $brand->meta_keyword = $validatedData['meta_keyword'];
-        $brand->meta_description = $validatedData['meta_description'];
-        $brand->status =$request->status == true ? '1':'0';
+        $brand->meta_description = $validatedData['meta_description'];   
  
         $brand->save();
 
@@ -73,7 +89,30 @@ class BrandsController extends Controller
         $brand->name = $validatedData['name'];
         $brand->slug = Str::slug($validatedData['slug']);
         $brand->description = $validatedData['description'];
+        $brand->about_brand = $validatedData['about_brand'];    
         $brand->other_description = $validatedData['other_description'];
+        $brand->short_description = $validatedData['short_description'];
+        $brand->address = $validatedData['address'];
+        $brand->housenumber = $validatedData['housenumber']; 
+        $brand->postalcode = $validatedData['postalcode'];
+
+        $brand->city = $validatedData['city'];
+        $brand->phonenumber = $validatedData['phonenumber'];
+        $brand->mobile = $validatedData['mobile'];
+        $brand->email = $validatedData['email'];  
+
+        if($request-> hasFile('logo')){
+            $path = 'uploads/brand/'.$brand->logo;
+            if(File::exists($path)){
+                File::delete($path);
+            }
+            $file = $request->file('bandr_image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time().'.'.$ext;
+            
+            $file->move('uploads/brand/', $filename);
+            $brand->logo = $filename;
+        }
 
         if($request-> hasFile('logo')){
             $path = 'uploads/brand/'.$brand->logo;
@@ -104,7 +143,7 @@ class BrandsController extends Controller
         $brand->meta_title = $validatedData['meta_title'];
         $brand->meta_keyword = $validatedData['meta_keyword'];
         $brand->meta_description = $validatedData['meta_description'];
-        $brand->status =$request->status == true ? '1':'0';
+   
  
         $brand->update();
 

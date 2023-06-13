@@ -22,6 +22,7 @@ class Brands extends Model
         'Vedio',
         'other_description',
         'address',
+        'housenumber',
         'postalcode',
         'city',
         'phonenumber',
@@ -37,3 +38,4 @@ class Brands extends Model
         return $this->hasMany(Product::class, 'brand_id', 'id');
     }
 }
+

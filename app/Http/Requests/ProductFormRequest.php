@@ -30,7 +30,7 @@ class ProductFormRequest extends FormRequest
                 'integer'
             ],
             'category' => [
-                'required',
+                'required', 
                 'string'
             ],
             'name' => [
@@ -42,37 +42,61 @@ class ProductFormRequest extends FormRequest
                 'string'
             ],
             'description' => [
+                'nullable', 
                 'string'
             ],
-            'other_description' => [
+            'type' => [
+                'nullable', 
+                'string'
+            ],
+            'disease' => [
+                'nullable', 
+                'string'
+            ],
+            'variety' => [
+                'nullable', 
+                'string'
+            ],
+            'sorting' => [
+                'nullable', 
+                'string'
+            ],
+            'pod' => [
+                'nullable', 
+                'string'
+            ],
+            'plant' => [
+                'nullable', 
                 'string'
             ],
             'orginal_price' => [
-                'required',
+                'nullable', 
                 'integer'
             ],
             'selling_price' => [
-                'required',
+                'nullable', 
                 'integer'
             ],
             'quantity' => [
-                'required',
+                'nullable', 
                 'integer'
             ],
-
             'meta_title' => [
+                'nullable', 
                 'string'
             ],
             'meta_keyword' => [
+                'nullable', 
                 'string'
             ],
             'meta_description' => [
+                'nullable', 
                 'string'
             ],
 
             'image' => [
                 'nullable',
-                //'image|mimes:jpeg,png,jpg'
+                'mimes:jpg,jpeg,png,mp4'
             ],
 
         ];

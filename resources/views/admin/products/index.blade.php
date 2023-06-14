@@ -16,14 +16,17 @@
                         <table class="table  table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">Id</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Brand</th>
-                                    <th scope="col">Orginal Price</th>
-                                    <th scope="col">Selling Price</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Price</th>                                    
                                     <th scope="col">Quantity</th>
-                                    <th scope="col">Description</th>  
-                                    <th scope="col">Short  Description</th>                                 
+                                    <th scope="col"><small>Disease Resistance/<br/>Tolerance</small></th>
+                                    <th scope="col">Variety</th>
+                                    <th scope="col">Sorting</th>
+                                    <th scope="col">Pod</th>
+                                    <th scope="col">plant</th>
                                     <th scope="col">Image</th>
                                     <th scope="col"></th>
                                 </tr>
@@ -31,20 +34,36 @@
                             <tbody>
                                 @foreach ($products as $product)
                                     <tr>
-                                        <td>{{ $product->id }}</td>
-                                        <td>{{ $product->name }}</td>
+                                        <td>{{ $product->name }}<br /><small>{{ $product->id }}</small><br /><small>{{ $product->slug }}</small>
+                                        </td>
                                         <td>
-                                            @if($product->brand)
-                                            {{ $product->brand->name }}
-                                            @else 
-                                            No Brand Silected
+                                            @if ($product->brand)
+                                                {{ $product->brand->name }}
+                                            @else
+                                                No Brand Silected
                                             @endif
                                         </td>
-                                        <td>{{ $product->orginal_price }}</td>
-                                        <td>{{ $product->selling_price }}</td>
-                                        <td>{{ $product->quantity }}</td>
+                                        <td>
+                                            @if ($product->category)
+                                                {{ $product->category->name }}
+                                            @else
+                                                No Category Silected
+                                            @endif
+                                        </td>
                                         <td>{{ $product->description }}</td>
-                                        <td>{{ $product->other_description }}</td>
+                                        <td>
+                                            Orginal Price: {{ $product->orginal_price }}
+                                            <br />
+                                            Selling Price: {{ $product->selling_price }}
+                                        </td>
+                                        
+                                        <td>{{ $product->quantity }}</td>
+
+                                        <td>{{ $product->disease }}</td>
+                                        <td>{{ $product->variety }}</td>
+                                        <td>{{ $product->sorting }}</td>
+                                        <td>{{ $product->pod }}</td>
+                                        <td>{{ $product->plant }}</td>
                                         <td>
                                             <img src="{{ asset('/uploads/product/' . $product->image) }}" width="60px"
                                                 height="60px" />
@@ -63,7 +82,7 @@
                         </table>
 
                         <div class="col-12 my-3">
-                        {{-- {{ $products->links() }} --}}
+                            {{-- {{ $products->links() }} --}}
                         </div>
                     </div>
                 </div>

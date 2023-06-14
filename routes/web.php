@@ -51,13 +51,15 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group( function (){
         Route::put('/category/{category}', 'update');
     });
 
+ 
+
     Route::controller(App\Http\Controllers\Admin\BannerController::class)->group(function () {
         Route::get('/banner', 'index');
         Route::get('/banner/create', 'create');
-        Route::post('/banner', 'store');   
+        Route::post('/banner', 'store');
+        Route::get('/banner/{banner}/edit', 'edit');
+        Route::put('/banner/{banner}', 'update');
+       
     });
- 
-
-   
 
 });

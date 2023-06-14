@@ -9,12 +9,19 @@
                 <a href="{{ url('admin/category/create')}}" class="btn btn-primary text-white float-end">Back</a>
             </div>
             <div class="card-body">
+                @if ($errors->any())
+                <div class="alert alert-warning mb-3">
+                    @foreach ($errors->all() as $error)
+                        <div>{{ $error }}</div>
+                    @endforeach
+                </div>
+            @endif
                 <form action="{{ url('admin/category') }}"  method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Category Name</label>
                         <div class="col-sm-10">
-                            <input type="text" name="name" class="form-control">
+                            <input type="text" name="name"  class="form-control">
                             @error('name')
                             <small class="text-danger">{{$message}}</small>    
                             @enderror
@@ -30,7 +37,7 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">category Description</label>
+                        <label class="col-sm-2 col-form-label">Category Description</label>
                         <div class="col-sm-10">
                             <textarea rows="5" name="description" class="form-control"></textarea>
                         </div>
@@ -54,7 +61,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Meta Title</label>
                         <div class="col-sm-10">
-                            <input type="text" name="meta_title" class="form-control">
+                            <input type="text" name="meta_title" value="Meta Title" class="form-control">
                         </div>
                     </div>
 
@@ -62,13 +69,13 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Meta Keyword</label>
                         <div class="col-sm-10">
-                            <input type="text" name="meta_keyword" class="form-control">
+                            <input type="text" name="meta_keyword" value="Meta Keyword" class="form-control">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Meta Description</label>
                         <div class="col-sm-10">
-                            <input type="text" name="meta_description" class="form-control">
+                            <input type="text" name="meta_description" value="Meta Description" class="form-control">
                         </div>
                     </div>
 

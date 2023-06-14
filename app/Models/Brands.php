@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Banner;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -36,6 +37,10 @@ class Brands extends Model
     public function products()
     {
         return $this->hasMany(Product::class, 'brand_id', 'id');
+    }
+    public function banners()
+    {
+        return $this->hasMany(Banner::class, 'brand_id', 'id');
     }
 }
 

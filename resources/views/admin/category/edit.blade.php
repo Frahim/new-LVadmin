@@ -9,12 +9,13 @@
                 <a href="{{ url('admin/category/create')}}" class="btn btn-primary text-white float-end">Back</a>
             </div>
             <div class="card-body">
-                <form action="{{ url('admin/category') }}"  method="POST" enctype="multipart/form-data">
+                <form action="{{ url('admin/category/' . $category->id) }}"  method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Category Name</label>
                         <div class="col-sm-10">
-                            <input type="text" name="name" class="form-control">
+                            <input type="text" name="name" value="{{ $category->name }}" class="form-control">
                             @error('name')
                             <small class="text-danger">{{$message}}</small>    
                             @enderror
@@ -23,23 +24,23 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Category Slug</label>
                         <div class="col-sm-10">
-                            <input type="text" name="slug" class="form-control">
+                            <input type="text" name="slug"  value="{{ $category->slug }}" class="form-control">
                             @error('slug')
                             <small class="text-danger">{{$message}}</small>    
                             @enderror
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">category Description</label>
+                        <label class="col-sm-2 col-form-label">Category Description</label>
                         <div class="col-sm-10">
-                            <textarea rows="5" name="description" class="form-control"></textarea>
+                            <textarea rows="5" name="description" class="form-control"> {{ $category->description }}</textarea>
                         </div>
                     </div>                   
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Category Image</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="file" name="cat_iamge" class="form-control">                               
+                                <input type="file" name="cat_iamge" value="{{ $category->dcat_iamge }}" class="form-control">                               
                             </div>
                         </div>
                     </div>
@@ -54,7 +55,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Meta Title</label>
                         <div class="col-sm-10">
-                            <input type="text" name="meta_title" class="form-control">
+                            <input type="text" name="meta_title" value="{{ $category->meta_title }}" class="form-control">
                         </div>
                     </div>
 
@@ -62,13 +63,13 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Meta Keyword</label>
                         <div class="col-sm-10">
-                            <input type="text" name="meta_keyword" class="form-control">
+                            <input type="text" name="meta_keyword" value="{{ $category->meta_keyword }}" class="form-control">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Meta Description</label>
                         <div class="col-sm-10">
-                            <input type="text" name="meta_description" class="form-control">
+                            <input type="text" name="meta_description" value="{{ $category->meta_description }}" class="form-control">
                         </div>
                     </div>
 

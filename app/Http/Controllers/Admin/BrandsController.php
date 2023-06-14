@@ -46,6 +46,7 @@ class BrandsController extends Controller
             $file->move('uploads/brand/', $filename);
             $brand->logo = $filename;
         }
+        
         if($request-> hasFile('bandr_image')){
             $file = $request->file('bandr_image');
             $ext = $file->getClientOriginalExtension();
@@ -106,7 +107,7 @@ class BrandsController extends Controller
             if(File::exists($path)){
                 File::delete($path);
             }
-            $file = $request->file('bandr_image');
+            $file = $request->file('logo');
             $ext = $file->getClientOriginalExtension();
             $filename = time().'.'.$ext;
             
@@ -114,17 +115,17 @@ class BrandsController extends Controller
             $brand->logo = $filename;
         }
 
-        if($request-> hasFile('logo')){
-            $path = 'uploads/brand/'.$brand->logo;
+        if($request-> hasFile('bandr_image')){
+            $path = 'uploads/brand/'.$brand->bandr_image;
             if(File::exists($path)){
                 File::delete($path);
             }
-            $file = $request->file('logo');
+            $file = $request->file('bandr_image');
             $ext = $file->getClientOriginalExtension();
             $filename = time().'.'.$ext;
             
             $file->move('uploads/brand/', $filename);
-            $brand->logo = $filename;
+            $brand->bandr_image = $filename;
         }
 
         if($request-> hasFile('Vedio')){

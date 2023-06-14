@@ -3,25 +3,27 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Brands;
+use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductFormRequest;
-use App\Models\Product;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\ProductFormRequest;
 
 class ProductsController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+       $products = Product::all();
        return view('admin.products.index', compact('products'));
     }
 
     public function create()
     {
         $brands = Brands::all();
-        return view('admin.products.create', compact('brands'));
+        $categories = Category::all();
+        return view('admin.products.create', compact('brands','categories'));
     }
 
     public function store(ProductFormRequest $request)
@@ -29,9 +31,11 @@ class ProductsController extends Controller
        
        $validatedData = $request->validated();
        
-       $brand = Brands::findOrFail($validatedData['brand_id']);      
+       $brand = Brands::findOrFail($validatedData['brand_id']);
+      // $category = Category::findOrFail($validatedData['category_id']);      
         $product = $brand->products()->create([
             'brand_id' => $validatedData['brand_id'],
+            'category' => $validatedData['category'],
             'name' => $validatedData['name'],
             'slug' => Str::slug($validatedData['slug']),
             'description'=> $validatedData['description'],

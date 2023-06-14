@@ -10,7 +10,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table  table-striped">
+                    {{-- <table class="table  table-striped">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
@@ -30,14 +30,13 @@
                                     <td>{{ $category->name }}</td>                                    
                                     <td>{{ $category->slug }}</td>
                                     <td>{{ $category->description }}</td>
+                                    <td>{{ $category->meta_title }}</td>
+                                    <td>{{ $category->meta_keyword }}</td>
+                                    <td>{{ $product->meta_description }}</td>
                                     <td>
                                         <img src="{{ asset('/uploads/category/' . $category->image) }}" width="60px"
                                             height="60px" />
                                     </td>
-                                    <td>{{ $category->meta_title }}</td>
-                                    <td>{{ $category->meta_keyword }}</td>
-                                    <td>{{ $category->meta_description }}</td>
-                                   
                                     <td>
                                         <a href="{{ url('admin/category/' . $category->id . '/edit') }}"
                                             class="btn btn-success">Edit</a>
@@ -49,7 +48,7 @@
                             @endforeach
 
                         </tbody>
-                    </table>
+                    </table> --}}
 
                     <div class="col-12 my-3">
                     {{-- {{ $products->links() }} --}}

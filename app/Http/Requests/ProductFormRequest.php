@@ -25,48 +25,52 @@ class ProductFormRequest extends FormRequest
     public function rules()
     {
         return [
-           'brand_id'=>[
+            'brand_id' => [
                 'required',
                 'integer'
-           ],
-            'name'=>[
-                'required',
-                'string'
             ],
-            'slug'=>[
+            'category' => [
                 'required',
                 'string'
             ],
-            'description'=>[              
-                'string'
-            ],    
-            'other_description'=>[              
+            'name' => [
+                'required',
                 'string'
             ],
-            'orginal_price'=>[  
-                'required',            
+            'slug' => [
+                'required',
+                'string'
+            ],
+            'description' => [
+                'string'
+            ],
+            'other_description' => [
+                'string'
+            ],
+            'orginal_price' => [
+                'required',
                 'integer'
             ],
-            'selling_price'=>[  
-                'required',            
+            'selling_price' => [
+                'required',
                 'integer'
             ],
-            'quantity'=>[  
-                'required',            
+            'quantity' => [
+                'required',
                 'integer'
             ],
 
-            'meta_title'=>[              
+            'meta_title' => [
                 'string'
             ],
-            'meta_keyword'=>[              
+            'meta_keyword' => [
                 'string'
             ],
-            'meta_description'=>[              
+            'meta_description' => [
                 'string'
             ],
 
-            'image'=>[              
+            'image' => [
                 'nullable',
                 //'image|mimes:jpeg,png,jpg'
             ],

@@ -45,7 +45,7 @@
                                         </td>
                                         <td>
                                             @if ($product->category)
-                                                {{ $product->category->name }}
+                                                {{ $product->category }}
                                             @else
                                                 No Category Silected
                                             @endif
@@ -65,8 +65,17 @@
                                         <td>{{ $product->pod }}</td>
                                         <td>{{ $product->plant }}</td>
                                         <td>
-                                            <img src="{{ asset('/uploads/product/' . $product->image) }}" width="60px"
-                                                height="60px" />
+                                            @if($product->productImages)
+                                                @foreach ($product->productImages as $image)
+                                                <img src="{{ asset($image->image) }}" width="60px"
+                                                    height="60px">
+                                                @endforeach
+                                            @else
+                                            {{-- <img src="{{ asset('/img/placeholder.jpg') }}" width="60px"
+                                            height="60px"> --}}
+                                            No image
+                                            @endif
+
                                         </td>
                                         <td>
                                             <a href="{{ url('admin/products/' . $product->id . '/edit') }}"

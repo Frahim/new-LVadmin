@@ -33,36 +33,47 @@ class BrandFormRequest extends FormRequest
                 'string'
             ],
             'description' => [
+                'nullable',
                 'string'
             ],
             'other_description' => [
+                'nullable',
                 'string'
             ],
             'about_brand' =>  [
+                'nullable',
                 'string'
             ],
             'short_description' => [
+                'nullable',
                 'string'
             ],
             'address' => [
+                'nullable',
                 'string'
             ],
             'housenumber' => [
+                'nullable',
                 'string'
             ],           
             'postalcode' => [
+                'nullable',
                 'string'
             ],
             'city' => [
+                'nullable',
                 'string'
             ],
             'phonenumber' => [
+                'nullable',
                 'string'
             ],
             'mobile' => [
+                'nullable',
                 'string'
             ],
             'email' => [
+                'nullable',
                 'string'
             ],
             'logo' => [
@@ -79,12 +90,15 @@ class BrandFormRequest extends FormRequest
             ],
 
             'meta_title' => [
+                'nullable',
                 'string'
             ],
             'meta_keyword' => [
+                'nullable',
                 'string'
             ],
             'meta_description' => [
+                'nullable',
                 'string'
             ],
 

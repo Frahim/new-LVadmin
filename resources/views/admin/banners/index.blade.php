@@ -46,11 +46,19 @@
                                            
                                         </td>
                                         <td>
+                                            <div class="editDelet">
                                             <a href="{{ url('admin/banner/' . $banner->id . '/edit') }}"
                                                 class="btn btn-success">Edit</a>
-                                            <a href="#" wire.click="deletebanner({{ $banner->id }})"
-                                                data-bs-toggle="modal" data-bs-target="#deleteBrand"
-                                                class="btn btn-danger">Delete</a>
+                                                <form action="{{ url('admin/banner/'.$banner->id.'',  ) }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+            
+                                                    <div class="btn btn-danger ">
+                                                        <input type="submit" class="btn" value="Delete" />
+                                                    </div>
+                                                </div>
+                                                  </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

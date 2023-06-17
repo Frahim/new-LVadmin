@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route\delete;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group( function (){
 
         Route::get('/brand/{brand}/edit', 'edit');
         Route::put('/brand/{brand}', 'update');
+        Route::delete('/brand/{brand}', 'destroy');
     });
 
 
@@ -40,10 +42,9 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group( function (){
         Route::get('/product/create', 'create');
         Route::post('/products', 'store');
         Route::get('/products/{product}/edit', 'edit');
-        Route::put('/products/{product}/', 'update');
+        Route::put('/products/{product}/', 'update');        
         
-        
-        Route::get('product-image/{$product_image_id}/delete', 'destroyImage');
+        Route::delete('product-image/{$product_image_id}/delete', 'destroyImage');
     });
 
     Route::controller(App\Http\Controllers\Admin\CategoryController::class)->group(function () {
@@ -64,5 +65,16 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group( function (){
         Route::put('/banner/{banner}', 'update');
        
     });
+
+
+    Route::controller(App\Http\Controllers\Admin\Highlighters::class)->group(function () {
+        Route::get('/highlighter', 'index');
+        Route::get('/highlighter/create', 'create');
+        Route::post('/highlighter', 'store');
+        Route::get('/highlighter/{highlighter}/edit', 'edit');
+        Route::put('/highlighter/{highlighter}', 'update');
+       
+    });
+
 
 });

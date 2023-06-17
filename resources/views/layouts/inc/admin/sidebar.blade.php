@@ -70,6 +70,20 @@
             </div>
         </div>
     </li>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHilight"
+            aria-expanded="true" aria-controls="collapseHilight">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Highlighter</span>
+        </a>
+        <div id="collapseHilight" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ url('/admin/highlighter') }}">All Highlighter</a>
+                <a class="collapse-item" href="{{ url('/admin/highlighter/create') }}">Add New Highlighter</a>
+            </div>
+        </div>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -94,6 +108,7 @@
         </div>
     </li>
 
+     
     <!-- Nav Item - Charts -->
     <li class="nav-item">
         <a class="nav-link" href="charts.html">

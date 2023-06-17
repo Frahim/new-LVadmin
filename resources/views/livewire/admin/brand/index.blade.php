@@ -59,11 +59,21 @@
                                     <td>{{ $brand->description }}</td>
                                     <td>{{ $brand->status == '1' ? 'Hidden' : 'Visible' }}</td>
                                     <td>
+                                        <div class="d-flex">
                                         <a href="{{ url('admin/brand/' . $brand->id . '/edit') }}"
                                             class="btn btn-success">Edit</a>
-                                        <a href="#" wire.click="deleteBrand({{ $brand->id }})"
+                                        {{-- <a href="#" wire.click="deleteBrand({{ $brand->id }})"
                                             data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                            class="btn btn-danger">Delete</a>
+                                            class="btn btn-danger">Delete</a> --}}
+                                      <form action="{{ url('admin/brand/'.$brand->id.'',  ) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+
+                                        <div class="btn btn-danger ">
+                                            <input type="submit" class="btn" value="Delete" />
+                                        </div>
+                                    </div>
+                                      </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -76,6 +86,7 @@
                     </div>
                 </div>
             </div>
+           
         </div>
     </div>
 </div>

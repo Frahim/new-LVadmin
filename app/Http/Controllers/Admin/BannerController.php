@@ -11,6 +11,7 @@ use App\Http\Requests\BannerFormRequest;
 
 class BannerController extends Controller
 {
+
     public function index()
     {
        $banners = Banner::all();
@@ -51,8 +52,6 @@ class BannerController extends Controller
     }
 
 
-
-
     public function edit(int $banner_id ){
         $brands = Brands::all();
         $banner = Banner::findOrFail($banner_id);
@@ -83,8 +82,8 @@ class BannerController extends Controller
                     $filename = time().$i++.'.'.$extention;
                     $imageFile-> move($uploadPath, $filename);
                     $finalImagePathName = $uploadPath.$filename;        
-                    $product->productImages()->create([
-                        'banner_id' => $product->id,
+                    $banner->productImages()->create([
+                        'banner_id' => $banner->id,
                         'video' => $finalImagePathName,
                     ]);
                 }
@@ -96,5 +95,13 @@ class BannerController extends Controller
         {
             return redirect('admin/banner')->with('message','No Such Product ID found');
         }
+    }
+
+    public function destroy(int $banner_id)
+    {
+       $banner = Banner::find($banner_id) ;
+      
+       $banner->delete();
+       return redirect('admin/banner')->with('message', 'Banner Deleted Successfully');
     }
 }

@@ -8,11 +8,11 @@ use App\Http\Controllers\Controller;
 
 class ProductImageController extends Controller
 {
-    public function index() 
-   {
-   $product_image = ProductImage::all();
-   return response()->json([        
-    "data" =>$product_image
-    ]);
+    public function index()
+    {
+        $product_image = ProductImage::all();
+        return response()->json([
+            "data" => $product_image
+        ]);
     }
 }

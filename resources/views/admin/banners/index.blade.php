@@ -15,8 +15,7 @@
                     <div class="table-responsive">
                         <table class="table  table-striped">
                             <thead>
-                                <tr>
-                                    <th scope="col">Id</th>
+                                <tr>                                   
                                     <th scope="col">Name</th>
                                     <th scope="col">Brand</th>
                                     <th scope="col">Video Link</th>
@@ -28,9 +27,11 @@
                             </thead>
                             <tbody>
                                 @foreach ($banners as $banner)
-                                    <tr>
-                                        <td>{{ $banner->id }}</td>
-                                        <td>{{ $banner->name }}</td>
+                                    <tr>                                       
+                                        <td>{{ $banner->name }}<br/>
+                                        <small class="my-2">ID= {{ $banner->id }}</small><br/>
+                                        <small class="my-2">Slug= {{ $banner->slug }}</small>
+                                        </td>
                                         <td>
                                             @if($banner->brand)
                                             {{ $banner->brand->name }}
@@ -38,10 +39,10 @@
                                             No Brand Silected
                                             @endif
                                         </td>
-                                        <td>{{ $banner->video_url}}</td>
+                                        <td  width="300px">{{ $banner->video_url}}</td>
                                         <td>{{ $banner->video }}</td>                                        
-                                        <td>{{ $banner->description }}</td>
-                                        <td>{{ $banner->other_description }}</td>
+                                        <td width="300px">{{ $banner->description }}</td>
+                                        <td width="300px">{{ $banner->other_description }}</td>
                                         <td>
                                            
                                         </td>
@@ -53,9 +54,8 @@
                                                     @csrf
                                                     @method('delete')
             
-                                                    <div class="btn btn-danger ">
-                                                        <input type="submit" class="btn" value="Delete" />
-                                                    </div>
+                                                        <input type="submit" class="btn btn-danger" value="Delete" />
+                                                    
                                                 </div>
                                                   </form>
                                             </div>

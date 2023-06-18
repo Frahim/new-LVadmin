@@ -9,3 +9,8 @@
     display: block;
     border-right: 1px solid #d1d3e2;
 }
+.editDelet {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}

@@ -53,7 +53,9 @@ class ProductsController extends Controller
 
             'meta_title' => $validatedData['meta_title'],
             'meta_keyword' => $validatedData['meta_keyword'],
-            'meta_description' => $validatedData['meta_description'],
+            'meta_description' => $validatedData['meta_description']
+           
+    
         ]);
 
         if ($request->hasFile('image')) {

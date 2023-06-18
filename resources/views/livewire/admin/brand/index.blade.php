@@ -35,7 +35,7 @@
                     <a href="{{ url('admin/brand/create') }}" class="btn btn-primary btn-sm float-end">Add Brand</a>
                 </div>
                 <div class="card-body">
-                    <table class="table table-success table-striped">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
@@ -59,7 +59,7 @@
                                     <td>{{ $brand->description }}</td>
                                     <td>{{ $brand->status == '1' ? 'Hidden' : 'Visible' }}</td>
                                     <td>
-                                        <div class="d-flex">
+                                        <div class="editDelet">
                                         <a href="{{ url('admin/brand/' . $brand->id . '/edit') }}"
                                             class="btn btn-success">Edit</a>
                                         {{-- <a href="#" wire.click="deleteBrand({{ $brand->id }})"
@@ -67,11 +67,9 @@
                                             class="btn btn-danger">Delete</a> --}}
                                       <form action="{{ url('admin/brand/'.$brand->id.'',  ) }}" method="post">
                                         @csrf
-                                        @method('delete')
-
-                                        <div class="btn btn-danger ">
-                                            <input type="submit" class="btn" value="Delete" />
-                                        </div>
+                                        @method('delete')                                       
+                                            <input type="submit" class="btn btn-danger " value="Delete" />
+                                        
                                     </div>
                                       </form>
                                     </td>

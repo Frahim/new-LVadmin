@@ -46,7 +46,7 @@
                         <label class="col-sm-2 col-form-label">Category Image</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="file" name="cat_iamge" class="form-control">                               
+                                <input type="file" name="cat_image" class="form-control">                               
                             </div>
                         </div>
                     </div>

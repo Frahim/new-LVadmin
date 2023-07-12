@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Banner;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -31,7 +32,8 @@ class Brands extends Model
         'email',
         'meta_title',
         'meta_keyword',
-        'meta_description',       
+        'meta_description',     
+      
     ];
 
     public function products()
@@ -41,6 +43,15 @@ class Brands extends Model
     public function banners()
     {
         return $this->hasMany(Banner::class, 'brand_id', 'id');
+    }
+    public function employ()
+    {
+        return $this->belongsTo(Employs::class, 'employ_id', 'id');
+    }
+
+    public function categorys()
+    {
+        return $this->belongsTo(Category::class, 'catetory_id', 'id');
     }
 }
 

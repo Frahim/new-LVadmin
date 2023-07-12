@@ -65,16 +65,17 @@
                                         <td>{{ $product->pod }}</td>
                                         <td>{{ $product->plant }}</td>
                                         <td>
-                                            @if($product->productImages)
+                                            <img src="{{ asset($product->pf_image) }}" width="60px"
+                                                    height="60px">
+                                            {{-- @if($product->productImages)
                                                 @foreach ($product->productImages as $image)
                                                 <img src="{{ asset($image->image) }}" width="60px"
                                                     height="60px">
                                                 @endforeach
                                             @else
                                             {{-- <img src="{{ asset('/img/placeholder.jpg') }}" width="60px"
-                                            height="60px"> --}}
-                                            No image
-                                            @endif
+                                            height="60px">                                            
+                                            @endif --}}
 
                                         </td>
                                         <td>

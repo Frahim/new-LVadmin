@@ -29,14 +29,14 @@ class CategoryController extends Controller
         $category->name = $validatedData['name'];
         $category->slug = Str::slug($validatedData['slug']);
         $category->description = $validatedData['description']; 
-        if($request-> hasFile('cat_image')){
+
+        if ($request->hasFile('cat_image')) {
             $file = $request->file('cat_image');
             $ext = $file->getClientOriginalExtension();
-            $filename = time().'.'.$ext;
-            
+            $filename = time() . '.' . $ext;
             $file->move('uploads/category/', $filename);
             $category->cat_image = $filename;
-        }    
+        }         
         $category->meta_title = $validatedData['meta_title'];
         $category->meta_keyword = $validatedData['meta_keyword'];
         $category->meta_description = $validatedData['meta_description'];   
@@ -53,19 +53,18 @@ class CategoryController extends Controller
     public function update( CategoryFormRequest $request, $category ){
         $validatedData = $request->validated();
         $category =  Category::findOrFail($category);
-
         $category->name = $validatedData['name'];
         $category->slug = Str::slug($validatedData['slug']);
         $category->description = $validatedData['description']; 
-        if($request-> hasFile('cat_image')){
-            $path = 'uploads/category/'.$category->cat_image;
-            if(File::exists($path)){
+
+        if ($request->hasFile('cat_image')) {
+            $path = 'uploads/category/' . $category->cat_image;
+            if (File::exists($path)) {
                 File::delete($path);
             }
             $file = $request->file('cat_image');
             $ext = $file->getClientOriginalExtension();
-            $filename = time().'.'.$ext;
-            
+            $filename = time() . '.' . $ext;
             $file->move('uploads/category/', $filename);
             $category->cat_image = $filename;
         }

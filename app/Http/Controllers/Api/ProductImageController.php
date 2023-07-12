@@ -11,8 +11,6 @@ class ProductImageController extends Controller
     public function index()
     {
         $product_image = ProductImage::all();
-        return response()->json([
-            "data" => $product_image
-        ]);
+        return response()->json($product_image);
     }
 }

@@ -35,8 +35,8 @@
                             <div class="tab-pane fade in active show" id="home-pills">
                                 <h4>Basick Information</h4>
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Brand Name</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-12 col-form-label">Brand Name</label>
+                                    <div class="col-sm-12">
                                         <input type="text" name="name" value="{{ $brand->name }}"
                                             class="form-control">
                                         @error('name')
@@ -45,37 +45,47 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Brand Slug</label>
-                                    <div class="col-sm-10">
+                                    <div class="col-md-6 col-sm-12">
+                                    <label class="col-sm-12 col-form-label">Brand Slug</label>
+                                    <div class="col-sm-12">
                                         <input type="text" name="slug" value="{{ $brand->slug }}"
                                             class="form-control">
                                         @error('slug')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <label class="col-sm-12 col-form-label">Select Catagories/ Services</label>
+                                        <div class="col-sm-12">    
+                                            <select class="category col-12 border border-primary" name="category[]" multiple="multiple">
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}" @if(in_array($category->id, $selectedCategories)) selected @endif>
+                                                        {{ $category->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        
+                                    </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">About Brand</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-12 col-form-label">About Brand</label>
+                                    <div class="col-sm-12">
                                         <textarea rows="5" name="about_brand" class="form-control">{{ $brand->about_brand }}</textarea>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Brand Description</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-12 col-form-label">Brand Description</label>
+                                    <div class="col-sm-12">
                                         <textarea rows="5" name="description" class="form-control">{{ $brand->description }}</textarea>
                                     </div>
                                 </div>
+                               
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Short Description</label>
-                                    <div class="col-sm-10">
-                                        <textarea rows="5" name="short_description" class="form-control">{{ $brand->short_description }}</textarea>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Other Description</label>
-                                    <div class="col-sm-10">
-                                        <textarea rows="5" name="other_description" class="form-control"> {{ $brand->short_description }} </textarea>
+                                    <label class="col-sm-12 col-form-label">Other Description</label>
+                                    <div class="col-sm-12">
+                                        <textarea rows="5" name="other_description" class="form-control"> {{ $brand->other_description }} </textarea>
                                     </div>
                                 </div>
 
@@ -83,8 +93,8 @@
                             <div class="tab-pane fade" id="profile-pills">
                                 <h4>Media</h4>
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Brand Logo</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-12 col-form-label">Brand Logo</label>
+                                    <div class="col-sm-12">
                                         <div class="input-group">
                                             <input type="file" name="logo" class="form-control">
                                             <img src="{{ asset('/uploads/brand/' . $brand->logo) }}" width="40px"
@@ -93,8 +103,8 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Brand Image</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-12 col-form-label">Brand Image</label>
+                                    <div class="col-sm-12">
                                         <div class="input-group">
                                             <input type="file" name="bandr_image" class="form-control">
                                             <img src="{{ asset('/uploads/brand/' . $brand->bandr_image) }}" width="40px"
@@ -105,13 +115,17 @@
 
 
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Brand Video</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-12 col-form-label">Banner Video URL</label>
+                                    <div class="col-sm-12">
                                         <div class="input-group">
-                                            <input type="file" name="Vedio" class="form-control">
-                                            <img src="{{ asset('/uploads/brand/' . $brand->Vedio) }}" width="40px"
-                                                height="40px" />
+                                            <input type="text" name="Vedio" value="{{ $brand->Vedio }}" class="form-control">                                            
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-12 col-form-label">Banner Text</label>
+                                    <div class="col-sm-12">
+                                        <textarea rows="5" name="short_description" class="form-control">{{ $brand->short_description }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +133,7 @@
                                 <h4>Address</h4>
                                 <div class="row mb-3">
                                     <div class="col-md-6 col-sm-12">
-                                        <label class="col-sm-10 col-form-label">Phone Number</label>
+                                        <label class="col-sm-12 col-form-label">Phone Number</label>
                                         <div class="col-sm-12">
                                             <input type="text" name="phonenumber" value="{{ $brand->phonenumber }}"
                                                 class="form-control">
@@ -135,7 +149,7 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-6 col-sm-12">
-                                        <label class="col-sm-10 col-form-label">Email</label>
+                                        <label class="col-sm-12 col-form-label">Email</label>
                                         <div class="col-sm-12">
                                             <input type="text" name="email" value="{{ $brand->email }}"
                                                 class="form-control">
@@ -148,7 +162,7 @@
 
                                 <div class="row mb-3">
                                     <div class="col-md-6 col-sm-12">
-                                        <label class="col-sm-10 col-form-label">Address</label>
+                                        <label class="col-sm-12 col-form-label">Address</label>
                                         <div class="col-sm-12">
                                             <input type="text" name="address" value="{{ $brand->address }}"
                                                 class="form-control">
@@ -166,15 +180,15 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-6 col-sm-12">
-                                        <label class="col-sm-10 col-form-label">City</label>
+                                        <label class="col-sm-12 col-form-label">City</label>
                                         <div class="col-sm-12">
                                             <input type="text" name="city" value="{{ $brand->city }}"
                                                 class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-6">
-                                        <label class="col-sm-2 col-form-label">Postalcode</label>
-                                        <div class="col-sm-10">
+                                        <label class="col-sm-12 col-form-label">Postalcode</label>
+                                        <div class="col-sm-12">
                                             <input type="text" name="postalcode" value="{{ $brand->postalcode }}"
                                                 class="form-control">
                                         </div>
@@ -186,8 +200,8 @@
 
                             <div class="tab-pane fade" id="settings-pills">
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Meta Title</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-12 col-form-label">Meta Title</label>
+                                    <div class="col-sm-12">
                                         <input type="text" name="meta_title" value="{{ $brand->meta_title }}"
                                             class="form-control">
                                     </div>
@@ -195,15 +209,15 @@
 
 
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Meta Keyword</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-12 col-form-label">Meta Keyword</label>
+                                    <div class="col-sm-12">
                                         <input type="text" name="meta_keyword" value="{{ $brand->meta_keyword }}"
                                             class="form-control">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Meta Description</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-12 col-form-label">Meta Description</label>
+                                    <div class="col-sm-12">
                                         <input type="text" name="meta_description"
                                             value="{{ $brand->meta_description }}" class="form-control">
                                     </div>

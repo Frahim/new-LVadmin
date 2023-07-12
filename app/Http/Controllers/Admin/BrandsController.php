@@ -2,31 +2,45 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Http\Requests\BrandFormRequest;
-use Illuminate\Support\Str;
 use App\Models\Brands;
+use App\Models\Category;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\BrandFormRequest;
 
+class BrandsController extends Controller {
 
-class BrandsController extends Controller
-{
-    public function index()
-    {
+    public function index() {
         return view('admin.brand.index');
     }
 
-    public function create()
-    {
-        return view('admin.brand.create');
+    public function create() {
+        $categories = Category::all();
+        return view('admin.brand.create', compact('categories'));
     }
 
-    public function store(BrandFormRequest $request)
-    {
+    public function store(BrandFormRequest $request) {
         $validatedData = $request->validated();
+
+        // Retrieve the selected category IDs from the request
+        $categoryIds = $validatedData['category'];
+        // Find the corresponding Category models
+        $categories = Category::whereIn('id', $categoryIds)->get();
+        // Create an array to store the category names
+        $categoryNames = [];
+        // Iterate through the categories and retrieve their names
+        foreach ($categories as $category) {
+            $categoryNames[] = $category->id;
+        }
+        // Convert the category names array to a comma-separated string
+        $categoryString = implode(', ', $categoryNames);
+
+        // Create a new Brands instance
         $brand = new Brands;
 
+        // Assign the brand attributes
         $brand->name = $validatedData['name'];
         $brand->slug = Str::slug($validatedData['slug']);
         $brand->description = $validatedData['description'];
@@ -40,6 +54,8 @@ class BrandsController extends Controller
         $brand->phonenumber = $validatedData['phonenumber'];
         $brand->mobile = $validatedData['mobile'];
         $brand->email = $validatedData['email'];
+        $brand->Vedio = $validatedData['Vedio'];
+        $brand->category = $categoryString;
 
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
@@ -56,17 +72,10 @@ class BrandsController extends Controller
             $filename = time() . '.' . $ext;
 
             $file->move('uploads/brand/', $filename);
-            $brand->logo = $filename;
+            $brand->bandr_image = $filename;
         }
 
-        if ($request->hasFile('Vedio')) {
-            $file = $request->file('Vedio');
-            $ext = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $ext;
-
-            $file->move('uploads/brand/', $filename);
-            $brand->Vedio = $filename;
-        }
+       
 
         $brand->meta_title = $validatedData['meta_title'];
         $brand->meta_keyword = $validatedData['meta_keyword'];
@@ -77,19 +86,33 @@ class BrandsController extends Controller
         return redirect('admin/brand')->with('message', 'Brand Added');
     }
 
-
-
-    public function edit(Brands $brand)
-    {
-        return view('admin.brand.edit', compact('brand'));
+    public function edit(Brands $brand) {
+        $categories = Category::all();
+        $selectedCategories = explode(', ', $brand->category); // Assuming category IDs are stored as a comma-separated string
+        return view('admin.brand.edit',  compact('brand', 'categories', 'selectedCategories'));
     }
 
-
-    public function update(BrandFormRequest $request, $brand)
-    {
+    public function update(BrandFormRequest $request, $brand) {
         $validatedData = $request->validated();
-        $brand =  Brands::findOrFail($brand);
 
+        // Retrieve the selected category IDs from the request
+        $categoryIds = $validatedData['category'];
+
+        // Find the corresponding Category models
+        $categories = Category::whereIn('id', $categoryIds)->get();
+
+        // Create an array to store the category names
+        $categoryNames = [];
+
+        // Iterate through the categories and retrieve their names
+        foreach ($categories as $category) {
+            $categoryNames[] = $category->id;
+        }
+
+        // Convert the category names array to a comma-separated string
+        $categoryString = implode(', ', $categoryNames);
+
+        $brand = Brands::findOrFail($brand);
 
         $brand->name = $validatedData['name'];
         $brand->slug = Str::slug($validatedData['slug']);
@@ -105,6 +128,8 @@ class BrandsController extends Controller
         $brand->phonenumber = $validatedData['phonenumber'];
         $brand->mobile = $validatedData['mobile'];
         $brand->email = $validatedData['email'];
+        $brand->category = $categoryString;
+        $brand->Vedio = $validatedData['Vedio'];
 
         if ($request->hasFile('logo')) {
             $path = 'uploads/brand/' . $brand->logo;
@@ -132,35 +157,22 @@ class BrandsController extends Controller
             $brand->bandr_image = $filename;
         }
 
-        if ($request->hasFile('Vedio')) {
-            $path = 'uploads/brand/' . $brand->Vedio;
-            if (File::exists($path)) {
-                File::delete($path);
-            }
-            $file2 = $request->file('Vedio');
-            $ext = $file2->getClientOriginalExtension();
-            $filename2 = time() . '.' . $ext;
-
-            $file2->move('uploads/brand/', $filename2);
-            $brand->Vedio = $filename2;
-        }
+        
 
         $brand->meta_title = $validatedData['meta_title'];
         $brand->meta_keyword = $validatedData['meta_keyword'];
         $brand->meta_description = $validatedData['meta_description'];
-
 
         $brand->update();
 
         return redirect('admin/brand')->with('message', 'Brand Update');
     }
 
+    public function destroy(int $brand_id) {
+        $brand = Brands::find($brand_id);
 
-    public function destroy(int $brand_id)
-    {
-       $brand = Brands::find($brand_id) ;
-      
-       $brand->delete();
-       return redirect('admin/brand')->with('message', 'Brand Deleted Successfully');
+        $brand->delete();
+        return redirect('admin/brand')->with('message', 'Brand Deleted Successfully');
     }
+
 }

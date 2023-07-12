@@ -55,7 +55,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group( function (){
         Route::put('/category/{category}', 'update');
     });
 
- 
+   
 
     Route::controller(App\Http\Controllers\Admin\BannerController::class)->group(function () {
         Route::get('/banner', 'index');
@@ -76,5 +76,14 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group( function (){
        
     });
 
+
+    Route::controller(App\Http\Controllers\Admin\EmployController::class)->group(function () {
+        Route::get('/employ', 'index');      
+        Route::get('/employ/create', 'create');  
+        Route::post('/employ', 'store');
+        Route::get('/employ/{employ}/edit', 'edit');
+        Route::put('/employ/{employ}', 'update');
+    });
+ 
 
 });

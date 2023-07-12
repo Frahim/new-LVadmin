@@ -10,11 +10,19 @@ class BannerController extends Controller
 {
     public function index()
     {
-       
+
         $banners = Banner::all();
-        return response()->json([        
-        "data" =>   $banners
-        ]);
+        return response()->json( $banners);
+    }
+
+    public function show($identity)
+    {
+        $banners = Banner::where('slug', $identity)->orWhere('id', $identity)->first();
+
+        if (!$banners) {
+            return response()->json(['error' => 'Brand not found'], 404);
         }
-       
+
+        return response()->json($banners);
+    }
 }

@@ -86,7 +86,7 @@ class BrandFormRequest extends FormRequest
             ],
             'Vedio' => [
                 'nullable',
-                'mimes:jpg,jpeg,png,mp4'
+                'string'
             ],
 
             'meta_title' => [
@@ -100,6 +100,10 @@ class BrandFormRequest extends FormRequest
             'meta_description' => [
                 'nullable',
                 'string'
+            ],
+            'category' => [
+                'nullable',
+               'array'
             ],
 
         ];

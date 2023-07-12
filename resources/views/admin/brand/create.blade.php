@@ -20,7 +20,13 @@
                     </li>
                 </ul>
                 <div class="card-body">
-                    
+                    @if ($errors->any())
+                    <div class="alert alert-warning mb-3">
+                        @foreach ($errors->all() as $error)
+                            <div>{{ $error }}</div>
+                        @endforeach
+                    </div>
+                @endif
                     <form action="{{ url('admin/brand') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <!-- Tab panes -->
@@ -37,12 +43,26 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
+                                    <div class="col-md-6 col-sm-12">
                                     <label class="col-sm-12 col-form-label">Brand Slug</label>
                                     <div class="col-sm-12">
                                         <input type="text" name="slug" class="form-control">
                                         @error('slug')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
+                                    </div>
+                                </div>
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <label class="col-sm-12 col-form-label">Select Catagories/ Services</label>
+                                        <div class="col-sm-12">    
+                                            <select class="category col-12 border border-primary" name="category[]" multiple="multiple">
+                                                @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach 
+                                              </select> 
+                                        </div>
+                                        
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -52,23 +72,17 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label class="col-sm-12 col-form-label">Brand Description</label>
-                                    <div class="col-sm-12">
-                                        <textarea rows="5" name="description" class="form-control"></textarea>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label class="col-sm-12 col-form-label">Short Description</label>
-                                    <div class="col-sm-12">
-                                        <textarea rows="5" name="short_description" class="form-control"></textarea>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
                                     <label class="col-sm-12 col-form-label">Other Description</label>
                                     <div class="col-sm-12">
                                         <textarea rows="5" name="other_description" class="form-control"></textarea>
                                     </div>
                                 </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-12 col-form-label">Services Area </label>
+                                    <div class="col-sm-12">
+                                        <textarea rows="5" name="description" class="form-control"></textarea>
+                                    </div>
+                                </div> 
 
                             </div>
                             <div class="tab-pane fade" id="profile-pills">
@@ -92,12 +106,19 @@
                        
 
                                 <div class="row mb-3">
-                                    <label class="col-sm-12 col-form-label">Brand Video</label>
+                                    <label class="col-sm-12 col-form-label">Banner Video URL</label>
                                     <div class="col-sm-12">
                                         <div class="input-group">
-                                            <input type="file" name="Vedio" class="form-control">                                       
+                                            <input type="text" name="Vedio" class="form-control">                                       
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-12 col-form-label"> Banner Text </label>
+                                    <div class="col-sm-12">
+                                      <textarea rows="5" name="short_description" class="form-control"></textarea>
+                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="messages-pills">

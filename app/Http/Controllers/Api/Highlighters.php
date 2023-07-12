@@ -11,8 +11,6 @@ class Highlighters extends Controller
     public function index()
     {
         $highlighters = Highlighter::all();
-        return response()->json([
-            "data" => $highlighters
-        ]);
+        return response()->json($highlighters);
     }
 }

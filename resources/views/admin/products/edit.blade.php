@@ -12,8 +12,7 @@
                 <ul class="nav nav-tabs">
                     <li><a class="active" href="#info-pills" data-toggle="tab">Product Info</a></li>                     
                     <li class=""><a href="#variation-pills" data-toggle="tab">Description</a></li>   
-                    <li class=""><a href="#price-pills" data-toggle="tab">Price</a></li>                
-                    <li class=""><a href="#image-pills" data-toggle="tab">Product Images</a></li>
+                    <li class=""><a href="#price-pills" data-toggle="tab">Price</a></li>
                     <li class=""><a href="#seo-pills" data-toggle="tab">SEO</a></li>
                 </ul>
 
@@ -60,12 +59,26 @@
                                     </div>
                                     <div class="col-sm-12 col-md-6">
                                         <label class="col-12 me-3">Select Category</label>
-                                        <select name="category" class="form-conrol p-2">
+                                        <select class="category col-12 border border-primary" name="category[]" multiple="multiple">
                                             @foreach ($categories as $category)
-                                                <option value="{{ $category->name }}">{{ $category->name }}</option>
-                                            @endforeach 
+                                                <option value="{{ $category->id }}" @if(in_array($category->id, $selectedCategories)) selected @endif>
+                                                    {{ $category->name }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
+
+                                    <div class="my-3 col-12">
+                                        <label class="col-sm-2 col-form-label">Product Image</label>
+                                        <div class="col-sm-10">
+                                            <div class="input-group">
+                                                <input type="file" name="pf_image" class="form-control"><br/>
+                                                
+                                                <img src="{{ asset($product->pf_image) }}" width="60px"
+                                                height="60px">
+                                            </div>
+                                        </div>
+                                    </div> 
                                 </div>
                                                                                            
                                 
@@ -120,29 +133,7 @@
                                 </div>
                                 
                             </div>
-
-                            <div class="tab-pane fade in" id="image-pills">
-                                <div class="my-3">
-                                    <label class="col-sm-2 col-form-label">Product Image</label>
-                                    <div class="col-sm-10">
-                                        <div class="input-group">
-                                            <input type="file" multiple name="image[]" class="form-control">
-                                            <div class="my-3 d-flex">
-                                            @if($product->productImages)
-                                                @foreach ($product->productImages as $image)
-                                                <img src="{{ asset($image->image) }}" width="60px"
-                                                    height="60px">
-                                                 <a href="{{url('admin/product_images/'.$image->id.'/delete')}}" >Remove</a>
-                                                @endforeach                                           
-                                            @endif
-                                           
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
+                          
                             <div class="tab-pane fade in" id="seo-pills">
                                 <div class="my-3">
                                     <label> Product Meta Title</label>

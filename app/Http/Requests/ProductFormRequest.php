@@ -30,8 +30,7 @@ class ProductFormRequest extends FormRequest
                 'integer'
             ],
             'category' => [
-                'required', 
-                'string'
+                'nullable',
             ],
             'name' => [
                 'required',
@@ -42,55 +41,59 @@ class ProductFormRequest extends FormRequest
                 'string'
             ],
             'description' => [
-                'nullable', 
+                'nullable',
                 'string'
             ],
             'type' => [
-                'nullable', 
+                'nullable',
                 'string'
             ],
             'disease' => [
-                'nullable', 
+                'nullable',
                 'string'
             ],
             'variety' => [
-                'nullable', 
+                'nullable',
                 'string'
             ],
             'sorting' => [
-                'nullable', 
+                'nullable',
                 'string'
             ],
             'pod' => [
-                'nullable', 
+                'nullable',
                 'string'
             ],
             'plant' => [
-                'nullable', 
+                'nullable',
                 'string'
             ],
+            'pf_image' => [
+                'nullable',
+                'mimes:jpg,jpeg,png'
+            ],
             'orginal_price' => [
-                'nullable', 
+                'nullable',
                 'integer'
             ],
             'selling_price' => [
-                'nullable', 
+                'nullable',
                 'integer'
             ],
             'quantity' => [
-                'nullable', 
+                'nullable',
                 'integer'
             ],
             'meta_title' => [
-                'nullable', 
+                'nullable',
                 'string'
             ],
             'meta_keyword' => [
-                'nullable', 
+                'nullable',
                 'string'
             ],
             'meta_description' => [
-                'nullable', 
+                'nullable',
                 'string'
             ],
 

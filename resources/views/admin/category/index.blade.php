@@ -31,7 +31,7 @@
                                     <td>{{ $category->slug }}</td>
                                     <td>{{ $category->description }}</td>
                                     <td>
-                                        <img src="{{ asset('/uploads/category/' . $category->image) }}" width="60px"
+                                        <img src="{{ asset('/uploads/category/' . $category->cat_image) }}" width="60px"
                                             height="60px" />
                                     </td>
                                     <td>{{ $category->meta_title }}</td>

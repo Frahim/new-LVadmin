@@ -39,8 +39,14 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Category Image</label>
                         <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="file" name="cat_iamge" value="{{ $category->dcat_iamge }}" class="form-control">                               
+                            <div class="input-group row">
+                                <div class="col-sm-12 col-md-6 my-2">
+                                <input type="file" name="cat_image" value="{{ $category->cat_image }}" class="form-control">   
+                                </div>
+                                <div class="col-sm-12 col-md-6 my-2">
+                                <img src="{{ asset('/uploads/category/' . $category->cat_image) }}" width="60px"
+                                height="60px" />            
+                                </div>                
                             </div>
                         </div>
                     </div>
@@ -75,7 +81,7 @@
 
                     <div class="row mb-3">
                         <div class="col-12 ">
-                            <button type="submit" class="btn btn-primary text-white float-end">Save</button>
+                            <button type="submit" class="btn btn-primary text-white float-end">Update</button>
                         </div>
                     </div>
                     

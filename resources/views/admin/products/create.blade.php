@@ -47,7 +47,7 @@
                                 </div>
 
                                 <div class="my-3 row">
-                                    <div class="col-sm-12 col-md-6">
+                                    <div class="col-sm-12 col-md-4">
                                         <label class="col-12 me-3">Select Brand</label>
                                         <select name="brand_id" class="form-conrol p-2">
                                             @foreach ($brands as $brand)
@@ -55,7 +55,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-sm-12 col-md-6">
+                                    <div class="col-sm-12 col-md-4">
                                         <label class="col-12 me-3">Select Category</label>
                                         <select class="category col-12 border border-primary" name="category[]"
                                             multiple="multiple">
@@ -65,29 +65,35 @@
                                         </select>
 
                                     </div>
-                                </div>
-                                <div class="my-3">
-                                    <label class="col-sm-2 col-form-label">Product Image</label>
-                                    <div class="col-sm-10">
+                              
+                                <div class="my-3 col-sm-12 col-md-4">
+                                    <label class="col-form-label">Product featured image</label>
+                                    <div class="">
                                         <div class="input-group">
                                             <input type="file" name="pf_image" required class="form-control">
 
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="my-3 col-sm-12 col-md-4">
+                                <div class="form-group">
+                                    <label for="gallery_images">Gallery Images</label>
+                                    <input type="file" name="gallery_images[]" class="form-control-file" multiple>
+                                </div>
+                            </div>
+                            </div>
                             </div>
 
                             <div class="tab-pane fade in" id="variation-pills">
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12 my-3 ">
                                         <label> Product Description</label>
-                                        <textarea rows="5" type="textarea" name="description" placeholder="Enter text ..."></textarea>
+                                        <textarea class="form-control" rows="5" type="textarea" name="description" placeholder="Enter text ..."></textarea>
                                     </div>
 
                                     <div class="col-sm-12 col-md-6 my-3 ">
                                         <label>Disease Resistance/Tolerance</label>
-                                        <textarea name="disease" class="form-control" placeholder="Enter text ..."></textarea>
+                                        <textarea name="disease" rows="5" class="form-control" placeholder="Enter text ..."></textarea>
                                     </div>
 
                                     <div class="col-sm-12 col-md-6 my-3 ">

@@ -49,7 +49,7 @@
                                 </div>
 
                                 <div class="my-3 row"> 
-                                    <div class="col-sm-12 col-md-6">
+                                    <div class="col-sm-12 col-md-4">
                                     <label class="col-12 me-3">Select Brand</label>
                                     <select name="brand_id" class="form-conrol p-2">
                                         @foreach ($brands as $brand)
@@ -57,7 +57,7 @@
                                         @endforeach
                                     </select>
                                     </div>
-                                    <div class="col-sm-12 col-md-6">
+                                    <div class="col-sm-12 col-md-4">
                                         <label class="col-12 me-3">Select Category</label>
                                         <select class="category col-12 border border-primary" name="category[]" multiple="multiple">
                                             @foreach ($categories as $category)
@@ -68,7 +68,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="my-3 col-12">
+                                    <div class="my-3 col-sm-12 col-md-4">
                                         <label class="col-sm-2 col-form-label">Product Image</label>
                                         <div class="col-sm-10">
                                             <div class="input-group">
@@ -79,6 +79,12 @@
                                             </div>
                                         </div>
                                     </div> 
+                                    <div class="my-3 col-sm-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="gallery_images">Gallery Images</label>
+                                        <input type="file" name="gallery_images[]" class="form-control-file" multiple>
+                                    </div>
+                                </div>
                                 </div>
                                                                                            
                                 

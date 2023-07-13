@@ -78,4 +78,11 @@ class Highlighters extends Controller
         return redirect('admin/highlighter')-> with('message', 'Highlighter Update');
     }
 
+    public function destroy(int $highlighter_id) {
+        $highlighter = Highlighter::find($highlighter_id);
+
+        $highlighter->delete();
+        return redirect('admin/highlighter')->with('message', 'Highlighter Deleted Successfully');
+    }
+
 }

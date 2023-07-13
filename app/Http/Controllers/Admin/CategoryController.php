@@ -77,4 +77,11 @@ class CategoryController extends Controller
 
         return redirect('admin/category')-> with('message', 'Category Update');
     }
+
+    public function destroy(int $category_id) {
+        $category = Category::find($category_id);
+
+        $category->delete();
+        return redirect('admin/category')->with('message', 'Category Deleted Successfully');
+    }
 }

@@ -6,12 +6,9 @@ use App\Models\Brands;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Str;
-use App\Models\ProductImage;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
-use App\Http\Resources\ProductResource;
-use Illuminate\Support\Facades\Redirect;
+
 use App\Http\Requests\ProductFormRequest;
 
 
@@ -77,7 +74,22 @@ class ProductsController extends Controller
             'pf_image' =>  $image->move('uploads/products', $newImageName),
         ]);
 
-
+        if($request->hasFile('image')){
+            $uploadPath = 'uploads/products/';
+    
+            $i =1;
+            foreach($request->file('image') as $imageFile){
+                $extention = $imageFile-> getClientOriginalExtension();
+                $filename = time().$i++.'.'.$extention;
+                $imageFile-> move($uploadPath, $filename);
+                $finalImagePathName = $uploadPath.$filename;
+    
+                $product->productImages()->create([
+                    'product_id' => $product->id,
+                    'image' => $finalImagePathName,
+                ]);
+            }
+           }
 
 
         return Redirect('admin/products')->with('message', 'Product Added Sucessfilly');

@@ -42,10 +42,12 @@
                                     </td>
                                     <td>
                                         <a href="{{ url('admin/employ/' . $employ->id . '/edit') }}"
-                                            class="btn btn-success">Edit</a>
-                                        <a href="#" wire.click="deleteproduct({{ $employ->id }})"
-                                            data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                            class="btn btn-danger">Delete</a>
+                                            class="btn btn-success">Edit</a>                                       
+                                            <form action="{{ url('admin/employ/' . $employ->id . '') }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <input type="submit" class="btn btn-danger" value="Delete" />
+                                            </form>
                                     </td>
                                 </tr>
                             @endforeach

@@ -8,41 +8,36 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center py-2">
-                    <h3 class="m-0 align-middle">Highlighter</h3>
-                    <a href="{{ url('admin/highlighter/create') }}" class="btn btn-primary btn-sm float-end">Add Highlighter</a>
+                    <h3 class="m-0 align-middle">All Pages</h3>
+                    <a href="{{ url('admin/pages/create') }}" class="btn btn-primary btn-sm float-end">Add New Page</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table  table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Number</th>
-                                    <th scope="col">Dialoge</th>
-                                    <th scope="col">Icon/Image</th>     
-                                    <th scope="col"></th>
+                                    <th scope="col">List Of Pages</th>
+                                    <th scope="col"> Settings</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ( $highlighters as $item)
+                                @foreach ($pages as $page)
                                     <tr>
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ $item->title }}</td>                                       
-                                        <td>{{ $item->number}}</td>
-                                        <td>{{ $item->dilog }}</td>                                        
-                                        <td>{{ $item->icon_image }}</td>                                       
                                         <td>
-                                           
+                                            <h2 class="mb-0">{{ $page->name }}</h2><br />
+                                            <small class="my-2">ID= {{ $page->id }}</small><br />
+                                            <small class="my-2">Slug= {{ $page->slug }}</small>
                                         </td>
                                         <td>
-                                            <a href="{{ url('admin/highlighter/' . $item->id . '/edit') }}"
-                                                class="btn btn-success">Edit</a>
-                                                <form action="{{ url('admin/highlighter/' . $item->id . '') }}" method="post">
+                                            <div class="editDelet">
+                                                <a href="{{ url('admin/pages/' . $page->id . '/edit') }}"
+                                                    class="btn btn-success">Edit</a>
+                                                <form action="{{ url('admin/pages/' . $page->id . '') }}" method="post">
                                                     @csrf
                                                     @method('delete')
                                                     <input type="submit" class="btn btn-danger" value="Delete" />
                                                 </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -51,7 +46,7 @@
                         </table>
 
                         <div class="col-12 my-3">
-                        {{-- {{ $Banners->links() }} --}}
+                            {{-- {{ $Banners->links() }} --}}
                         </div>
                     </div>
                 </div>

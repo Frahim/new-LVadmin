@@ -42,9 +42,12 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group( function (){
         Route::get('/product/create', 'create');
         Route::post('/products', 'store');
         Route::get('/products/{product}/edit', 'edit');
-        Route::put('/products/{product}/', 'update');        
+        Route::put('/products/{product}/', 'update');     
         
-        Route::delete('product-image/{$product_image_id}/delete', 'destroyImage');
+        Route::post('/products/{product_id}/add-gallery', [App\Http\Controllers\Admin\ProductsController::class, 'addGallery'])->name('admin.products.add-gallery');
+
+        Route::delete('/products/{product}', 'destroy');
+ 
     });
 
     Route::controller(App\Http\Controllers\Admin\CategoryController::class)->group(function () {
@@ -53,6 +56,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group( function (){
         Route::post('/category', 'store');   
         Route::get('/category/{category}/edit', 'edit');
         Route::put('/category/{category}', 'update');
+        Route::delete('/category/{category}', 'destroy');
     });
 
    
@@ -63,6 +67,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group( function (){
         Route::post('/banner', 'store');
         Route::get('/banner/{banner}/edit', 'edit');
         Route::put('/banner/{banner}', 'update');
+        Route::delete('/banner/{banner}', 'destroy');
        
     });
 
@@ -73,7 +78,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group( function (){
         Route::post('/highlighter', 'store');
         Route::get('/highlighter/{highlighter}/edit', 'edit');
         Route::put('/highlighter/{highlighter}', 'update');
-       
+        Route::delete('/highlighter/{highlighter}', 'destroy');
     });
 
 
@@ -83,6 +88,16 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group( function (){
         Route::post('/employ', 'store');
         Route::get('/employ/{employ}/edit', 'edit');
         Route::put('/employ/{employ}', 'update');
+        Route::delete('/employ/{employ}', 'destroy');
+    });
+
+    Route::controller(App\Http\Controllers\Admin\PagesController::class)->group(function () {
+        Route::get('/pages', 'index');      
+        Route::get('/pages/create', 'create');  
+        Route::post('/pages', 'store');
+        Route::get('/pages/{page}/edit', 'edit');
+        Route::put('/pages/{page}', 'update');
+        Route::delete('/pages/{page}', 'destroy');
     });
  
 

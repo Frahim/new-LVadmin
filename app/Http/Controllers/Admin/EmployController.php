@@ -101,5 +101,10 @@ class EmployController extends Controller
         }
     }
 
+    public function destroy(int $employ_id) {
+        $employ = Employs::find($employ_id);
 
+        $employ->delete();
+        return redirect('admin/employ')->with('message', 'Employ Deleted Successfully');
+    }
 }

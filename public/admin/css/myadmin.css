@@ -14,3 +14,17 @@
     gap: 5px;
     align-items: center;
 }
+
+.gallery-view {
+    display: flex;
+    gap: 10px;
+}
+.glimg {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+select {
+    width: 100%;
+    border-radius: 5px;
+}

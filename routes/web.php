@@ -43,8 +43,8 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group( function (){
         Route::post('/products', 'store');
         Route::get('/products/{product}/edit', 'edit');
         Route::put('/products/{product}/', 'update');     
-        
-        Route::post('/products/{product_id}/add-gallery', [App\Http\Controllers\Admin\ProductsController::class, 'addGallery'])->name('admin.products.add-gallery');
+        Route::get('products/{product_id}/delete','destroy');
+        Route::get('product_image/{product_image_id}/delete','destroyImage');
 
         Route::delete('/products/{product}', 'destroy');
  

@@ -48,7 +48,7 @@ Route::controller(App\Http\Controllers\Api\ProductController::class)->group(func
 });
 Route::controller(App\Http\Controllers\Api\ProductImageController::class)->group(function(){
     Route::get('product-image', 'index');   
-     Route::get('product-image/{id}', 'show');
+     Route::get('product-image/{identiProimg}', 'show');
     
 });
 Route::controller(App\Http\Controllers\Api\Highlighters::class)->group(function(){
@@ -60,6 +60,7 @@ Route::controller(App\Http\Controllers\Api\EmployController::class)->group(funct
     Route::get('employ', 'index');   
     Route::get('employ/{id}', 'show');
 });
+
 
 
 

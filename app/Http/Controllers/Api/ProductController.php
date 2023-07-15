@@ -17,12 +17,12 @@ class ProductController extends Controller
 
     public function show($identiPro)
     {
-        $products = Product::where('slug', $identiPro)->orWhere('id', $identiPro)->first();
+        $product = Product::with('productImages')->where('slug', $identiPro)->orWhere('id', $identiPro)->first();
 
-        if (!$products) {
-            return response()->json(['error' => 'Brand not found'], 404);
+        if (!$product) {
+            return response()->json(['error' => 'Product not found'], 404);
         }
 
-        return response()->json($products);
+        return response()->json($product);
     }
 }

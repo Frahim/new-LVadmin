@@ -13,7 +13,7 @@
                 <ul class="nav nav-tabs">
                     <li><a class="active" href="#info-pills" data-toggle="tab">Product Info</a></li>
                     <li class=""><a href="#variation-pills" data-toggle="tab">Description</a></li>
-                    <li class=""><a href="#price-pills" data-toggle="tab">Price</a></li>            
+                    <li class=""><a href="#price-pills" data-toggle="tab">Price</a></li>
                     <li class=""><a href="#seo-pills" data-toggle="tab">SEO</a></li>
                 </ul>
                 <div class="card-body">
@@ -48,40 +48,42 @@
 
                                 <div class="my-3 row">
                                     <div class="col-sm-12 col-md-4">
-                                        <label class="col-12 me-3">Select Brand</label>
-                                        <select name="brand_id" class="form-conrol p-2">
+                                        <label class="me-3">Select Brand</label>
+                                        <select name="brand_id" class="form-conrol p-2 COL-12">
                                             @foreach ($brands as $brand)
                                                 <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="col-sm-12 col-md-4">
-                                        <label class="col-12 me-3">Select Category</label>
-                                        <select class="category col-12 border border-primary" name="category[]"
-                                            multiple="multiple">
+                                        <label class="me-3">Select Category</label>
+                                        <select class="category col-12 border border-primary" name="category[]" multiple="multiple">
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach
                                         </select>
 
                                     </div>
-                              
-                                <div class="my-3 col-sm-12 col-md-4">
-                                    <label class="col-form-label">Product featured image</label>
-                                    <div class="">
-                                        <div class="input-group">
-                                            <input type="file" name="pf_image" required class="form-control">
+                                </div>
+                                    <div class="my-3 row">
+                                        <div class="my-3 col-sm-12 col-md-4">
+                                            <label class="col-form-label">Product Featured image</label>
+                                            <div class="">
+                                                <div class="input-group">
+                                                    <input type="file" name="pf_image" required class="form-control">
 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="my-3 col-sm-12 col-md-8">
+                                            <div class="form-group">
+                                                <label for="gallery_images">Product Gallery</label>
+                                                <input type="file" name="image[]" multiple class="form-control-file">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="my-3 col-sm-12 col-md-4">
-                                <div class="form-group">
-                                    <label for="gallery_images">Gallery Images</label>
-                                    <input type="file" name="gallery_images[]" class="form-control-file" multiple>
-                                </div>
-                            </div>
-                            </div>
+
+                              
                             </div>
 
                             <div class="tab-pane fade in" id="variation-pills">
@@ -133,7 +135,7 @@
                                 </div>
 
                             </div>
-                           
+
                             <div class="tab-pane fade in" id="seo-pills">
                                 <div class="my-3">
                                     <label> Product Meta Title</label>

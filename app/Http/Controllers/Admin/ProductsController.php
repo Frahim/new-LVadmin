@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 
 use App\Http\Requests\ProductFormRequest;
-
+use App\Models\ProductImage;
 
 class ProductsController extends Controller
 {
@@ -32,6 +32,7 @@ class ProductsController extends Controller
 
         $validatedData = $request->validated();
         $brand = Brands::findOrFail($validatedData['brand_id']);
+
         if ($request->hasFile('pf_image')) {
             $image = $request->file('pf_image');
             $imageExtension = $image->getClientOriginalExtension();
@@ -67,7 +68,6 @@ class ProductsController extends Controller
             'sorting' => $validatedData['sorting'],
             'pod' => $validatedData['pod'],
             'plant' => $validatedData['plant'],
-
             'meta_title' => $validatedData['meta_title'],
             'meta_keyword' => $validatedData['meta_keyword'],
             'meta_description' => $validatedData['meta_description'],
@@ -91,7 +91,6 @@ class ProductsController extends Controller
             }
            }
 
-
         return Redirect('admin/products')->with('message', 'Product Added Sucessfilly');
     }
 
@@ -111,6 +110,24 @@ class ProductsController extends Controller
     $validatedData = $request->validated();
     $product = Product::findOrFail($product_id); // Find the product using its ID
 
+    // Retrieve the selected category IDs from the request
+    $categoryIds = $validatedData['category'];
+
+    // Find the corresponding Category models
+    $categories = Category::whereIn('id', $categoryIds)->get();
+
+    // Create an array to store the category names
+    $categoryNames = [];
+
+    // Iterate through the categories and retrieve their names
+    foreach ($categories as $category) {
+        $categoryNames[] = $category->id;
+    }
+
+    // Convert the category names array to a comma-separated string
+    $categoryString = implode(', ', $categoryNames);
+
+
     // Handle the image only if a new image file is uploaded
     if ($request->hasFile('pf_image')) {
         $path = 'uploads/products/' . $product->pf_image;
@@ -127,10 +144,28 @@ class ProductsController extends Controller
         $product->pf_image = $newImageName; // Update the product's image field with the new image name
     }
 
+    if ($request->hasFile('image')) {
+        $uploadPath = 'uploads/products/' . $product->image;
+        if (File::exists($uploadPath)) {
+            File::delete($uploadPath); // Delete the old image file
+        }
+
+        $i = 1;
+        foreach ($request->file('image') as $imageFile) {
+            $extension = $imageFile->getClientOriginalExtension();
+            $filename = time() . $i++ . '.' . $extension;
+            $imageFile->move($uploadPath, $filename);
+            $finalImagePathName = $uploadPath . $filename;
+            $product->productImages()->create([
+                'product_id' => $product->id,
+                'image' => $finalImagePathName,
+            ]);
+        }
+    }
     // Update the product with the validated data
     $product->update([
         'brand_id' => $validatedData['brand_id'],
-        'category' => $validatedData['category'],
+        'category' => $categoryString,
         'name' => $validatedData['name'],
         'slug' => Str::slug($validatedData['slug']),
         'type' => $validatedData['type'],
@@ -153,5 +188,26 @@ class ProductsController extends Controller
 
 
 
+public function destroyImage(int $product_image_id)  {
+    $productImage= ProductImage::findOrFail($product_image_id);
+    if(File::exists($productImage->image)){
+        File::delete($productImage->image);
+    }
+    $productImage->delete();
+    return redirect()->back()->with('message','Product Iamge Delete');
+}
+
+public function destroy(int $product_id){
+    $product = Product::findOrFail($product_id); // Find the product using its ID
+    if($product->productImage){
+        foreach($product->productImage as $iamge){
+            if(File::exists($iamge->image)){
+                File::delete($iamge->image);
+            }
+        }
+    }
+    $product->delete();
+    return redirect('admin/products')->with('message', 'Product Delete Successfully');
+}
 
 }

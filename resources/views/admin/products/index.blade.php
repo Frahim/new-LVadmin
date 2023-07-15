@@ -81,8 +81,7 @@
                                         <td>
                                             <a href="{{ url('admin/products/' . $product->id . '/edit') }}"
                                                 class="btn btn-success">Edit</a>
-                                            <a href="#" wire.click="deleteproduct({{ $product->id }})"
-                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                            <a href="{{ url('admin/products/' . $product->id . '/delete') }}"                                                
                                                 class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
